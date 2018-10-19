@@ -1,0 +1,86 @@
+include required(classpath("application"))
+
+database {
+  profile = "slick.jdbc.MySQLProfile$"
+  db {
+    driver = "com.mysql.jdbc.Driver"
+    url = "jdbc:mysql:<OurDatabaseName>?rewriteBatchedStatements=true&useSSL=false"
+    user = <OurDatabaseUser>
+    password = <OurDatabasePassword>
+    connectionTimeout = 5000
+  }
+}
+
+
+google {
+
+  application-name = "cromwell"
+
+  auths = [
+    {
+      name = "application-default"
+      scheme = "application_default"
+    },
+    {
+      name = "service-account"
+      scheme = "service_account"
+      service-account-id = <ServiceAccountID>
+      json-file = <OurDownloadedServiceAccountCredentials>
+    },
+  ]
+}
+
+engine {
+  filesystems {
+    gcs {
+      auth = "service-account"
+      project = <OurProjectName>
+    }
+  }
+}
+
+backend {
+  default = "JES"
+  providers {
+    JES {
+      actor-factory = "cromwell.backend.impl.jes.JesBackendLifecycleActorFactory"
+      concurrent-job-limit = 500
+      // concurrent-job-limit suggested by Ruchi (Broad) to stop memory spikes)
+      config {
+        // Google project
+        project = <OurProjectName>
+
+        // Base bucket for workflow executions
+        root = "gs://<OurBucketToUse>"
+
+        // Polling for completion backs-off gradually for slower-running jobs.
+        // This is the maximum polling interval (in seconds):
+        maximum-polling-interval = 600
+
+        // Optional Dockerhub Credentials. Can be used to access private docker images.
+        dockerhub {
+          // account = ""
+          // token = ""
+        }
+
+        genomics {
+          // A reference to an auth defined in the `google` stanza at the top.  This auth is used to create
+          // Pipelines and manipulate auth JSONs.
+          auth = "service-account"
+          // Endpoint for APIs, no reason to change this unless directed by Google.
+          endpoint-url = "https://genomics.googleapis.com/"
+          // This allows you to use an alternative service account to launch jobs, by default uses default service account
+          compute-service-account = "default"
+        }
+
+        filesystems {
+          gcs {
+            // A reference to a potentially different auth for manipulating files via engine functions.
+            auth = "service-account"
+            project = <OurProjectName>
+          }
+        }
+      }
+    }
+  }
+}
