@@ -38,7 +38,9 @@ backend.providers.JES.concurrent-job-limit = 500
 
 Cromwell has no security itself, https://cromwell.readthedocs.io/en/stable/Security/
 
-For the test run I used a proxy nginx server requiring a login and forwarding to Cromwell. The openstack url for cromwell is also only viewable internally. I shut down the port to all except the proxy. For serious use we might need to rethink.
+For the test run I used a proxy nginx server requiring a login and forwarding to Cromwell. 
+The openstack url for cromwell is also only viewable internally. 
+I shut down the port to all except the proxy. nginx default config here. For serious use we might need to rethink.
 
 # Problems
 
