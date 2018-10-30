@@ -37,7 +37,7 @@ backend.providers.JES.concurrent-job-limit = 500
 From Google meeting October 2018, 3 suggestions
 
 ## Switching to internal IP address
-Better security, and you don't run out of quote, there's no need for externl IP addresses, but this option is not yet documented 
+Better security, and you don't run out of quota, there's no need for external IP addresses, but this option is not yet documented 
 https://gatkforums.broadinstitute.org/gatk/discussion/12334/running-cromwell-with-google-cloud-call-vm-with-external-ip-address
 
 And
@@ -45,7 +45,7 @@ The sample conf shows how to add default runtime values if not supplied in wdl
 https://github.com/broadinstitute/cromwell/blob/develop/cromwell.examples.conf
 
 ## Switching to Pipeline v2 backend
-With the latest Cromwell (currently 36) this shoudl allow CWL to work on Google Cloud. Need to test. ANd get back to them if there are any problems.
+With the latest Cromwell (currently 36) this should allow CWL to work on Google Cloud. Need to test. ANd get back to them if there are any problems.
 
 https://cromwell.readthedocs.io/en/develop/backends/Google/
 
