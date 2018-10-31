@@ -45,11 +45,14 @@ The sample conf shows how to add default runtime values if not supplied in wdl
 https://github.com/broadinstitute/cromwell/blob/develop/cromwell.examples.conf
 
 ## Switching to Pipeline v2 backend
-With the latest Cromwell (currently 36) this should allow CWL to work on Google Cloud. Need to test. ANd get back to them if there are any problems.
+With the latest Cromwell (currently 36) this should allow CWL to work on Google Cloud. Need to test. And get back to them if there are any problems.
 
 https://cromwell.readthedocs.io/en/develop/backends/Google/
 
-
+# Data files
+The compressed archive holds the input files, options files and wdl file for the test runs.
+The options file used in the end was the 'logging workflow' one as that copies out some 
+useful overall logs. The other logging options seemed less useful in this case.
 
 # Security
 
